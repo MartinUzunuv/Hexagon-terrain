@@ -25,7 +25,7 @@ function fill6(x, y, r) {
 hero = { ax: 1, ay: 2 };
 aim = { ax: 5, ay: 5 };
 
-cooldown = 0
+cooldown = 0;
 
 class six {
   r = 33.5;
@@ -120,7 +120,6 @@ function draw() {
   context.fillStyle = "brown";
   context.strokeStyle = "brown";
   fill6(arr[hero.ax][hero.ay].x, arr[hero.ax][hero.ay].y, 25);
-
 }
 
 function update() {
@@ -130,173 +129,208 @@ function update() {
     }
   }
 
-  cooldown++
-  if(cooldown > 50){
-    cooldown = 0
-  let tempArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    tempArr.push([]);
-    for (let j = 0; j < arr[i].length; j++) {
-      tempArr[i].push({ type: arr[i][j].type }); //(-2 y),( -1 y), (+1 x -1 y), (+1 y), (+2 y),( +1 x +1 y)
-    }
-  }
-
-  if(hero.ay %2 !=0){
-  if (tempArr[hero.ax][hero.ay - 2].type != 1) {
-    tempArr[hero.ax][hero.ay - 2].parent = { x: hero.ax, y: hero.ay - 2 };
-    // arr[hero.ax][hero.ay - 2].type = 2
-  }
-  if (tempArr[hero.ax][hero.ay - 1].type != 1) {
-    tempArr[hero.ax][hero.ay - 1].parent = { x: hero.ax, y: hero.ay - 1 };
-    // arr[hero.ax][hero.ay - 1].type = 2
-  }
-  if (tempArr[hero.ax + 1][hero.ay - 1].type != 1) {
-    tempArr[hero.ax + 1][hero.ay - 1].parent = {
-      x: hero.ax + 1,
-      y: hero.ay - 1,
-    };
-    // arr[hero.ax + 1][hero.ay - 1].type = 2
-  }
-  if (tempArr[hero.ax][hero.ay + 1].type != 1) {
-    tempArr[hero.ax][hero.ay + 1].parent = { x: hero.ax, y: hero.ay + 1 };
-    // arr[hero.ax][hero.ay + 1].type = 2
-  }
-  if (tempArr[hero.ax][hero.ay + 2].type != 1) {
-    tempArr[hero.ax][hero.ay + 2].parent = { x: hero.ax, y: hero.ay + 2 };
-    // arr[hero.ax][hero.ay + 2].type = 2
-  }
-  if (tempArr[hero.ax + 1][hero.ay + 1].type != 1) {
-    tempArr[hero.ax + 1][hero.ay + 1].parent = {
-      x: hero.ax + 1,
-      y: hero.ay + 1,
-    };
-    // arr[hero.ax + 1][hero.ay + 1].type = 2
-  }
-}else{
-  if (tempArr[hero.ax][hero.ay - 2].type != 1) {
-    tempArr[hero.ax][hero.ay - 2].parent = { x: hero.ax, y: hero.ay - 2 };
-    // arr[hero.ax][hero.ay - 2].type = 2
-  }
-  if (tempArr[hero.ax][hero.ay - 1].type != 1) {
-    tempArr[hero.ax][hero.ay - 1].parent = { x: hero.ax, y: hero.ay - 1 };
-    // arr[hero.ax][hero.ay - 1].type = 2
-  }
-  if (tempArr[hero.ax - 1][hero.ay - 1].type != 1) {
-    tempArr[hero.ax - 1][hero.ay - 1].parent = {
-      x: hero.ax - 1,
-      y: hero.ay - 1,
-    };
-    // arr[hero.ax - 1][hero.ay - 1].type = 2
-  }
-  if (tempArr[hero.ax][hero.ay + 1].type != 1) {
-    tempArr[hero.ax][hero.ay + 1].parent = { x: hero.ax, y: hero.ay + 1 };
-    // arr[hero.ax][hero.ay + 1].type = 2
-  }
-  if (tempArr[hero.ax][hero.ay + 2].type != 1) {
-    tempArr[hero.ax][hero.ay + 2].parent = { x: hero.ax, y: hero.ay + 2 };
-    // arr[hero.ax][hero.ay + 2].type = 2
-  }
-  if (tempArr[hero.ax - 1][hero.ay + 1].type != 1) {
-    tempArr[hero.ax - 1][hero.ay + 1].parent = {
-      x: hero.ax - 1,
-      y: hero.ay + 1,
-    };
-    // arr[hero.ax - 1][hero.ay + 1].type = 2
-  }
-}
-
-  for (let iter = 0; iter < 30; iter++) {
+  cooldown++;
+  if (cooldown > 50) {
+    cooldown = 0;
+    let tempArr = [];
     for (let i = 0; i < arr.length; i++) {
+      tempArr.push([]);
       for (let j = 0; j < arr[i].length; j++) {
-        if (tempArr[i][j].parent != undefined) {
-          try{
-            if(j %2 !=0){
-          if (
-            tempArr[i][j - 2].type != 1 &&
-            tempArr[i][j - 2].parent == undefined
-          ) {
-            tempArr[i][j - 2].parent = tempArr[i][j].parent;
+        tempArr[i].push({ type: arr[i][j].type }); //(-2 y),( -1 y), (+1 x -1 y), (+1 y), (+2 y),( +1 x +1 y)
+      }
+    }
+
+    if (hero.ay % 2 != 0) {
+      if (
+        tempArr[hero.ax][hero.ay - 2].type != 1 &&
+        tempArr[hero.ax][hero.ay - 2].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay - 2].parent = { x: hero.ax, y: hero.ay - 2 };
+        // arr[hero.ax][hero.ay - 2].type = 2
+      }
+      if (
+        tempArr[hero.ax][hero.ay - 1].type != 1 &&
+        tempArr[hero.ax][hero.ay - 1].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay - 1].parent = { x: hero.ax, y: hero.ay - 1 };
+        // arr[hero.ax][hero.ay - 1].type = 2
+      }
+      if (
+        tempArr[hero.ax + 1][hero.ay - 1].type != 1 &&
+        tempArr[hero.ax + 1][hero.ay - 1].parent == undefined
+      ) {
+        tempArr[hero.ax + 1][hero.ay - 1].parent = {
+          x: hero.ax + 1,
+          y: hero.ay - 1,
+        };
+        // arr[hero.ax + 1][hero.ay - 1].type = 2
+      }
+      if (
+        tempArr[hero.ax][hero.ay + 1].type != 1 &&
+        tempArr[hero.ax][hero.ay + 1].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay + 1].parent = { x: hero.ax, y: hero.ay + 1 };
+        // arr[hero.ax][hero.ay + 1].type = 2
+      }
+      if (
+        tempArr[hero.ax][hero.ay + 2].type != 1 &&
+        tempArr[hero.ax][hero.ay + 2].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay + 2].parent = { x: hero.ax, y: hero.ay + 2 };
+        // arr[hero.ax][hero.ay + 2].type = 2
+      }
+      if (
+        tempArr[hero.ax + 1][hero.ay + 1].type != 1 &&
+        tempArr[hero.ax + 1][hero.ay + 1].parent == undefined
+      ) {
+        tempArr[hero.ax + 1][hero.ay + 1].parent = {
+          x: hero.ax + 1,
+          y: hero.ay + 1,
+        };
+        // arr[hero.ax + 1][hero.ay + 1].type = 2
+      }
+    } else {
+      if (
+        tempArr[hero.ax][hero.ay - 2].type != 1 &&
+        tempArr[hero.ax][hero.ay - 2].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay - 2].parent = { x: hero.ax, y: hero.ay - 2 };
+        // arr[hero.ax][hero.ay - 2].type = 2
+      }
+      if (
+        tempArr[hero.ax][hero.ay - 1].type != 1 &&
+        tempArr[hero.ax][hero.ay - 1].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay - 1].parent = { x: hero.ax, y: hero.ay - 1 };
+        // arr[hero.ax][hero.ay - 1].type = 2
+      }
+      if (
+        tempArr[hero.ax - 1][hero.ay - 1].type != 1 &&
+        tempArr[hero.ax - 1][hero.ay - 1].parent == undefined
+      ) {
+        tempArr[hero.ax - 1][hero.ay - 1].parent = {
+          x: hero.ax - 1,
+          y: hero.ay - 1,
+        };
+        // arr[hero.ax - 1][hero.ay - 1].type = 2
+      }
+      if (
+        tempArr[hero.ax][hero.ay + 1].type != 1 &&
+        tempArr[hero.ax][hero.ay + 1].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay + 1].parent = { x: hero.ax, y: hero.ay + 1 };
+        // arr[hero.ax][hero.ay + 1].type = 2
+      }
+      if (
+        tempArr[hero.ax][hero.ay + 2].type != 1 &&
+        tempArr[hero.ax][hero.ay + 2].parent == undefined
+      ) {
+        tempArr[hero.ax][hero.ay + 2].parent = { x: hero.ax, y: hero.ay + 2 };
+        // arr[hero.ax][hero.ay + 2].type = 2
+      }
+      if (
+        tempArr[hero.ax - 1][hero.ay + 1].type != 1 &&
+        tempArr[hero.ax - 1][hero.ay + 1].parent == undefined
+      ) {
+        tempArr[hero.ax - 1][hero.ay + 1].parent = {
+          x: hero.ax - 1,
+          y: hero.ay + 1,
+        };
+        // arr[hero.ax - 1][hero.ay + 1].type = 2
+      }
+    }
+
+    for (let iter = 0; iter < 30; iter++) {
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+          if (tempArr[i][j].parent != undefined) {
+            try {
+              if (j % 2 != 0) {
+                if (
+                  tempArr[i][j - 2].type != 1 &&
+                  tempArr[i][j - 2].parent == undefined
+                ) {
+                  tempArr[i][j - 2].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i][j - 1].type != 1 &&
+                  tempArr[i][j - 1].parent == undefined
+                ) {
+                  tempArr[i][j - 1].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i + 1][j - 1].type != 1 &&
+                  tempArr[i + 1][j - 1].parent == undefined
+                ) {
+                  tempArr[i + 1][j - 1].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i][j + 1].type != 1 &&
+                  tempArr[i][j + 1].parent == undefined
+                ) {
+                  tempArr[i][j + 1].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i][j + 2].type != 1 &&
+                  tempArr[i][j + 2].parent == undefined
+                ) {
+                  tempArr[i][j + 2].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i + 1][j + 1].type != 1 &&
+                  tempArr[i + 1][j + 1].parent == undefined
+                ) {
+                  tempArr[i + 1][j + 1].parent = tempArr[i][j].parent;
+                }
+              } else {
+                if (
+                  tempArr[i][j - 2].type != 1 &&
+                  tempArr[i][j - 2].parent == undefined
+                ) {
+                  tempArr[i][j - 2].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i][j - 1].type != 1 &&
+                  tempArr[i][j - 1].parent == undefined
+                ) {
+                  tempArr[i][j - 1].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i - 1][j - 1].type != 1 &&
+                  tempArr[i - 1][j - 1].parent == undefined
+                ) {
+                  tempArr[i - 1][j - 1].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i][j + 1].type != 1 &&
+                  tempArr[i][j + 1].parent == undefined
+                ) {
+                  tempArr[i][j + 1].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i][j + 2].type != 1 &&
+                  tempArr[i][j + 2].parent == undefined
+                ) {
+                  tempArr[i][j + 2].parent = tempArr[i][j].parent;
+                }
+                if (
+                  tempArr[i - 1][j + 1].type != 1 &&
+                  tempArr[i - 1][j + 1].parent == undefined
+                ) {
+                  tempArr[i - 1][j + 1].parent = tempArr[i][j].parent;
+                }
+              }
+            } catch (e) {}
           }
-          if (
-            tempArr[i][j - 1].type != 1 &&
-            tempArr[i][j - 1].parent == undefined
-          ) {
-            tempArr[i][j - 1].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i + 1][j - 1].type != 1 &&
-            tempArr[i + 1][j - 1].parent == undefined
-          ) {
-            tempArr[i + 1][j - 1].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i][j + 1].type != 1 &&
-            tempArr[i][j + 1].parent == undefined
-          ) {
-            tempArr[i][j + 1].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i][j + 2].type != 1 &&
-            tempArr[i][j + 2].parent == undefined
-          ) {
-            tempArr[i][j + 2].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i + 1][j + 1].type != 1 &&
-            tempArr[i + 1][j + 1].parent == undefined
-          ) {
-            tempArr[i + 1][j + 1].parent = tempArr[i][j].parent;
-          }
-        }else{
-          if (
-            tempArr[i][j - 2].type != 1 &&
-            tempArr[i][j - 2].parent == undefined
-          ) {
-            tempArr[i][j - 2].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i][j - 1].type != 1 &&
-            tempArr[i][j - 1].parent == undefined
-          ) {
-            tempArr[i][j - 1].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i - 1][j - 1].type != 1 &&
-            tempArr[i - 1][j - 1].parent == undefined
-          ) {
-            tempArr[i - 1][j - 1].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i][j + 1].type != 1 &&
-            tempArr[i][j + 1].parent == undefined
-          ) {
-            tempArr[i][j + 1].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i][j + 2].type != 1 &&
-            tempArr[i][j + 2].parent == undefined
-          ) {
-            tempArr[i][j + 2].parent = tempArr[i][j].parent;
-          }
-          if (
-            tempArr[i - 1][j + 1].type != 1 &&
-            tempArr[i - 1][j + 1].parent == undefined
-          ) {
-            tempArr[i - 1][j + 1].parent = tempArr[i][j].parent;
-          }
-        }
-        }catch(e){}
         }
       }
     }
-  }
 
-  if(!(aim.ax == hero.ax && aim.ay == hero.ay)){
-    if(tempArr[aim.ax][aim.ay].parent != undefined) {
-    hero.ax = tempArr[aim.ax][aim.ay].parent.x
-    hero.ay = tempArr[aim.ax][aim.ay].parent.y
+    if (!(aim.ax == hero.ax && aim.ay == hero.ay)) {
+      if (tempArr[aim.ax][aim.ay].parent != undefined) {
+        hero.ax = tempArr[aim.ax][aim.ay].parent.x;
+        hero.ay = tempArr[aim.ax][aim.ay].parent.y;
+      }
     }
   }
-  
-}
 }
